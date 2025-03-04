@@ -1,0 +1,24 @@
+{
+  "name": "solar-system",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jasjeet13/solar-system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jasjeet13/solar-system/issues"
+  },
+  "homepage": "https://github.com/Jasjeet13/solar-system#readme",
+  "description": "",
+  "dependencies": {
+    "firebase": "^11.4.0",
+    "three": "^0.174.0"
+  }
+}
