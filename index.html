@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar System Simulation</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        #controls {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 10;
+        }
+        label { display: block; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+    <div id="controls">
+        <label>Planet:
+            <select id="planetSelect"></select>
+        </label>
+        <label>Size: <input type="range" id="sizeSlider" min="0.5" max="5" step="0.1"></label>
+        <label>Speed: <input type="range" id="speedSlider" min="0.001" max="0.05" step="0.001"></label>
+        <label>Orbit Distance: <input type="range" id="distanceSlider" min="10" max="100" step="1"></label>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
