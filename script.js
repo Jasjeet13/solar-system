@@ -1,28 +1,23 @@
-// Initialize the scene
+
 const scene = new THREE.Scene();
 
-// Camera setup
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(0, 70, 100); // Move the camera back for better framing
+camera.position.set(0, 70, 100); 
 camera.lookAt(0, 0, 0);
 
-// Renderer setup
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-// Lighting
 const light = new THREE.PointLight(0xffffff, 2, 500);
 light.position.set(0, 10, 0);
 scene.add(light);
 
-// Sun
 const sunGeometry = new THREE.SphereGeometry(5, 32, 32);
 const sunMaterial = new THREE.MeshStandardMaterial({ color: 0xffff00, emissive: 0xffaa00 });
 const sun = new THREE.Mesh(sunGeometry, sunMaterial);
 scene.add(sun);
 
-// Planet data
 const planetData = [
     { name: "Mercury", size: 0.5, orbitA: 10, orbitB: 8, color: 0xaaaaaa, speed: 0.02 },
     { name: "Venus", size: 1.2, orbitA: 16, orbitB: 13, color: 0xffa500, speed: 0.015 },
@@ -34,7 +29,6 @@ const planetData = [
     { name: "Neptune", size: 2, orbitA: 75, orbitB: 68, color: 0x191970, speed: 0.002 }
 ];
 
-// Function to create elliptical orbits
 function createOrbit(orbitA, orbitB) {
     const points = [];
     for (let i = 0; i <= 100; i++) {
@@ -49,10 +43,8 @@ function createOrbit(orbitA, orbitB) {
     return orbit;
 }
 
-// Create planets & orbits
 const planets = [];
 planetData.forEach(data => {
-    // Create planet
     const geometry = new THREE.SphereGeometry(data.size, 32, 32);
     const material = new THREE.MeshStandardMaterial({ color: data.color });
     const planet = new THREE.Mesh(geometry, material);
@@ -60,20 +52,18 @@ planetData.forEach(data => {
     scene.add(planet);
     planets.push(planet);
 
-    // Create and add orbit
     const orbit = createOrbit(data.orbitA, data.orbitB);
     scene.add(orbit);
 });
 
-// Animation loop (Planets revolve around the Sun)
+
 function animate() {
     requestAnimationFrame(animate);
 
     planets.forEach(planet => {
         const { orbitA, orbitB, speed } = planet.userData;
-        planet.userData.angle += speed; // Update angle for revolution
+        planet.userData.angle += speed; 
 
-        // Elliptical motion around the Sun
         planet.position.x = Math.cos(planet.userData.angle) * orbitA;
         planet.position.z = Math.sin(planet.userData.angle) * orbitB;
     });
@@ -81,12 +71,10 @@ function animate() {
     renderer.render(scene, camera);
 }
 
-// Keep everything centered in the frame
 window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-// Start Animation
 animate();
